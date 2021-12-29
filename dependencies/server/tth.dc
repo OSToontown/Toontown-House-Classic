@@ -1,0 +1,192 @@
+keyword broadcast; 
+keyword ram;       
+keyword p2p;
+keyword virtual;
+keyword antihack;
+
+from direct.distributed import DistributedObject/AI
+from direct.distributed import TimeManager/AI
+from direct.distributed import DistributedNode/AI
+from direct.distributed import DistributedSmoothNode/AI
+ 
+struct BarrierData {
+  uint16 context;
+  string name;
+  uint32 avIds[];
+};
+ 
+dclass DistributedObject {
+  setBarrierData(BarrierData data[]) broadcast ram;
+  setBarrierReady(uint16 context);
+  setLocation(uint32 parentId, uint32 zoneId) broadcast ram;
+};
+ 
+dclass TimeManager: DistributedObject {
+  requestServerTime(uint8 context) p2p;
+  serverTime(uint8 context, int32 timestamp);
+};
+ 
+dclass DistributedNode: DistributedObject {
+  setX(int16 / 10) broadcast ram;
+  setY(int16 / 10) broadcast ram;
+  setZ(int16 / 10) broadcast ram;
+  setH(int16 % 360 / 10) broadcast ram;
+  setP(int16 % 360 / 10) broadcast ram;
+  setR(int16 % 360 / 10) broadcast ram;
+ 
+  setPos: setX, setY, setZ;
+  setHpr: setH, setP, setR;
+  setPosHpr: setX, setY, setZ, setH, setP, setR;
+  setXY: setX, setY;
+  setXZ: setX, setZ;
+  setXYH: setX, setY, setH;
+  setXYZH: setX, setY, setZ, setH;
+};
+ 
+dclass DistributedSmoothNode: DistributedNode {
+ 
+  setComponentL(uint64) broadcast ram;
+  setComponentX(int16 / 10) broadcast ram;
+  setComponentY(int16 / 10) broadcast ram;
+  setComponentZ(int16 / 10) broadcast ram;
+  setComponentH(int16 % 360 / 10) broadcast ram;
+  setComponentP(int16 % 360 / 10) broadcast ram;
+  setComponentR(int16 % 360 / 10) broadcast ram;
+  setComponentT(int16 timestamp) broadcast ram;
+ 
+  setSmStop: setComponentT;
+  setSmH: setComponentH, setComponentT;
+  setSmZ: setComponentZ, setComponentT;
+  setSmXY: setComponentX, setComponentY, setComponentT;
+  setSmXZ: setComponentX, setComponentZ, setComponentT;
+  setSmPos: setComponentX, setComponentY, setComponentZ, setComponentT;
+  setSmHpr: setComponentH, setComponentP, setComponentR, setComponentT;
+  setSmXYH: setComponentX, setComponentY, setComponentH, setComponentT;
+  setSmXYZH: setComponentX, setComponentY, setComponentZ, setComponentH, setComponentT;
+  setSmPosHpr: setComponentX, setComponentY, setComponentZ, setComponentH, setComponentP, setComponentR, setComponentT;
+  setSmPosHprL: setComponentL, setComponentX, setComponentY, setComponentZ, setComponentH, setComponentP, setComponentR, setComponentT;
+ 
+  clearSmoothing(int8 bogus) broadcast;
+ 
+  suggestResync(uint32 avId, int16 timestampA, int16 timestampB,
+                int32 serverTimeSec, uint16 serverTimeUSec,
+                uint16 / 100 uncertainty);
+  returnResync(uint32 avId, int16 timestampB,
+               int32 serverTimeSec, uint16 serverTimeUSec,
+               uint16 / 100 uncertainty);
+};
+
+from tth.ohs import DistributedAvatar/AI/AH/UD
+from tth.ohs import DistributedDockBoat/AI
+from tth.ohs import DistributedDistrict/SM
+from tth.ohs import DistributedTrolley/AI
+from tth.ohs import DistributedRocket/AI
+from tth.ohs import AIAsync
+from tth.ohs import AccountMgr/AI/UD
+from tth.datahnd import DataHandler/AI
+from tth.friends import FriendshipMgr/AI
+from tth.building import DistributedDoor/AI
+from tth.cogs import DistributedCog/AI/UD
+from tth.fishing import DistributedPond/AI
+from tth.fishing import DistributedFishingShadow/AI
+from tth.npc import DistributedNPC/AI
+from tth.npc import DistributedBlockingNPC/AI
+from tth.npc.DistributedFishermanNPC import DistributedFishermanNPC/AI
+
+dclass DistributedAvatar : DistributedSmoothNode {
+  setToonDna(blob) broadcast ram required antihack;
+  setState(string,string,int32) broadcast ram;
+  speak(string) broadcast;
+  toonUp(int16,uint8) broadcast antihack;
+};
+
+dclass AIAsync : DistibutedObject {
+    sendAdminMsg(string) broadcast;
+    sendSpecialMsg(string) broadcast;
+}
+
+dclass AccountMgr : DistibutedObject {
+    setData(string);
+}
+
+dclass DistributedDockBoat : DistributedObject {
+    setT(int32) broadcast required ram virtual;
+};
+
+dclass DistributedTrolley : DistributedObject {
+  setToons(int32,int32,int32,int32) broadcast required ram;
+  requestBoard(int32) p2p;
+  accept(int32,int8) broadcast;
+  reject(int32) broadcast antihack;
+  requestExit(int32) p2p;
+  setMinigameZone(int16) broadcast;
+  setState(string,int32) broadcast ram;
+};
+
+dclass DistributedRocket : DistributedObject {
+  setState(string,int32) broadcast ram;
+};
+
+dclass DataHandler : DistributedObject {
+  request(int32,int32) p2p;
+  response(int32,blob) broadcast;
+};
+
+dclass DistributedDistrict : DistributedObject {
+  setId(uint8) broadcast ram antihack;
+  setToons(int16) broadcast ram virtual;
+};
+
+dclass FriendshipMgr : DistributedObject {
+  requestFriend(int32,string) p2p;
+  incomeRequest(int32,string);
+  updateRequest(int32,int8) p2p;
+  toonOn(int32);
+  toonOff(int32);
+};
+
+dclass DistributedDoor : DistributedObject {
+  setTarget(string) broadcast ram required;
+  setState(string,int32,string,int32) broadcast ram required;
+  requestEnter(string) p2p;
+};
+
+dclass DistributedCog : DistributedObject {
+  setDNA(string) broadcast ram required virtual;
+  setState(string,string,int32) broadcast ram;
+  setChat(uint16) broadcast;
+  requestBattle() p2p;
+  battleRejected();
+};
+
+dclass DistributedPond : DistributedObject {
+  setEstate(int8) broadcast ram;
+  setToons(uint32,uint32,uint32,uint32) broadcast ram required;
+  requestEnter(uint8) p2p;
+  requestExit() p2p;
+  accept();
+  reject();
+};
+
+dclass DistributedFishingShadow : DistributedObject {
+  setPondDoId(uint32) broadcast ram required;
+  setPoint(int16/10,int16/10,int16/10,int32) broadcast ram;
+};
+
+dclass DistributedNPC : DistributedNode {
+  setId(int32) broadcast ram required;
+};
+
+dclass DistributedBlockingNPC : DistributedNPC {
+  setToon(uint32) broadcast ram;
+  requestUse() p2p;
+  requestLeave() p2p;
+  reject();
+  enter(int8);
+  timedOut();
+  setClH(int16 % 360 / 10) broadcast ram clsend;
+  setClChat(uint8, string) broadcast clsend antihack virtual;
+}
+
+dclass DistributedFishermanNPC : DistributedBlockingNPC {
+}

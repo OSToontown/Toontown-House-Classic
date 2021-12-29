@@ -1,0 +1,35 @@
+import DistributedAvatar
+import DistributedPellet
+import DistributedSmoothAvatar
+import DistributedSyncPellet
+import DistributedSignpost/AI
+
+// These classes are used in server1.py/client1.py
+
+dclass DistributedAvatar: DistributedNode {
+  setAvColor(uint8 r/255, uint8 g/255, uint8 b/255) broadcast ram required;
+};
+
+dclass DistributedPellet: DistributedObject {
+  setInitialPos(int16 x / 100, int16 y / 100, int16 z / 100) broadcast ram required;
+};
+
+// These classes are used in server2.py/client2.py
+
+dclass DistributedSmoothAvatar: DistributedSmoothNode {
+  setAvColor(uint8 r/255, uint8 g/255, uint8 b/255) broadcast ram required;
+};
+
+dclass DistributedSyncPellet: DistributedObject {
+  setInitialPos(int16 x / 100, int16 y / 100, int16 z / 100) broadcast ram required;
+  setStartTime(int32 startTime) broadcast ram required;                    
+};
+
+dclass DistributedSignpost: DistributedNode {
+  setMessage(string) broadcast ram required;
+  setColor(uint8 r/255, uint8 g/255, uint8 b/255) broadcast ram required;
+
+  touched(uint8 r/255, uint8 g/255, uint8 b/255) p2p;
+  react() broadcast;
+};
+

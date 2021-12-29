@@ -1,0 +1,8 @@
+#NAME = (id,<msg to be sent>)
+FRIEND_ONLINE = (1,"friendOn")
+FRIEND_OFFLINE = (2,"friendOff")
+FRIEND_LEFT = (3,"friendLeft")
+FRIEND_REQUEST = (4,"friendReq")
+FRIEND_REQUEST_CANCEL = (5,"friendReqCancel")
+FRIEND_ACCEPT = (6,"friendAccept")
+FRIEND_REJECT = (7,"friendReject")

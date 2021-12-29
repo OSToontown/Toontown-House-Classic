@@ -1,0 +1,696 @@
+1365933150
+2 2
+11 libp3vision 4 nRMq 8 p3vision 
+17
+23 4 make 0 4 40 15 ARToolKit::make 0 1 1 807
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::make
+//       Access: Private
+//  Description: Create a new ARToolKit instance.
+//
+//               Camera must be the nodepath of a panda camera object.
+//               The panda camera's field of view is initialized to match
+//               the field of view of the physical webcam.  Each time
+//               you call analyze, all marker nodepaths will be moved
+//               into a position which is relative to this camera.
+//               The marker_size parameter indicates how large you
+//               printed the physical markers.  You should use the same
+//               size units that you wish to use in the panda code.
+////////////////////////////////////////////////////////////////////
+97
+static ARToolKit *ARToolKit::make(NodePath camera, Filename const &paramfile, double markersize);
+
+24 10 ~ARToolKit 0 4 40 21 ARToolKit::~ARToolKit 0 0 220
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+28
+ARToolKit::~ARToolKit(void);
+
+25 13 set_threshold 0 4 40 24 ARToolKit::set_threshold 0 1 2 936
+// Filename: arToolKit.I
+// Created by: jyelon (01Nov2007)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::set_threshold
+//       Access: private
+//  Description: As part of its analysis, the ARToolKit occasionally
+//               converts images to black and white by thresholding
+//               them.  The threshold is set to 0.5 by default, but
+//               you can tweak it here.
+////////////////////////////////////////////////////////////////////
+47
+inline void ARToolKit::set_threshold(double n);
+
+26 14 attach_pattern 0 4 40 25 ARToolKit::attach_pattern 0 1 3 469
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::attach_pattern
+//       Access: Public
+//  Description: Associates the specified glyph with the specified
+//               NodePath.  Each time you call analyze, ARToolKit
+//               will update the NodePath's transform.  If the node
+//               is not visible, its scale will be set to zero.
+////////////////////////////////////////////////////////////////////
+71
+void ARToolKit::attach_pattern(Filename const &pattern, NodePath path);
+
+27 15 detach_patterns 0 4 40 26 ARToolKit::detach_patterns 0 1 4 267
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::detach_patterns
+//       Access: Public
+//  Description: Dissociates all patterns from all NodePaths.
+////////////////////////////////////////////////////////////////////
+38
+void ARToolKit::detach_patterns(void);
+
+28 7 analyze 0 4 40 18 ARToolKit::analyze 0 2 5 6 625
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::analyze
+//       Access: Public
+//  Description: Analyzes the non-pad region of the specified texture.
+//               This causes all attached nodepaths to move.
+//               The parameter do_flip_texture is true by default,
+//               because Panda's representation of textures is
+//               upside down from ARToolKit. If you already have
+//               a texture that's upside-down, however, you should
+//               set it to false.
+////////////////////////////////////////////////////////////////////
+66
+void ARToolKit::analyze(Texture *tex, bool do_flip_texture = (1));
+
+29 13 OpenCVTexture 0 4 41 28 OpenCVTexture::OpenCVTexture 0 2 7 8 609
+////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::Constructor
+//       Access: Published
+//  Description: Sets up the texture to read frames from a camera
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::Copy Constructor
+//       Access: Protected
+//  Description: Use OpenCVTexture::make_copy() to make a duplicate copy of
+//               an existing OpenCVTexture.
+////////////////////////////////////////////////////////////////////
+78
+OpenCVTexture::OpenCVTexture(basic_string< char > const &name = ((string())));
+
+30 11 from_camera 0 4 41 26 OpenCVTexture::from_camera 0 5 9 10 11 12 13 738
+////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+//
+//               If alpha_file_channel is 0, then the camera image
+//               becomes a normal RGB texture.  If it is 1, 2, or 3,
+//               then the camera image becomes an alpha texture, using
+//               the indicated channel of the source.
+////////////////////////////////////////////////////////////////////
+139
+bool OpenCVTexture::from_camera(int camera_index = (-1), int z = (0), int alpha_file_channel = (0), LoaderOptions const &options = ((())));
+
+31 14 get_class_type 0 4 41 29 OpenCVTexture::get_class_type 0 1 14 0
+54
+static TypeHandle OpenCVTexture::get_class_type(void);
+
+32 15 get_num_options 0 4 43 28 WebcamVideo::get_num_options 0 1 15 465
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_num_options
+//       Access: Public, Static
+//  Description: Returns the number of webcam options.  An "option"
+//               consists of a device plus a set of configuration
+//               parameters.  For example, "Creative Webcam Live at
+//               640x480, 30 fps" is an option.
+////////////////////////////////////////////////////////////////////
+46
+static int WebcamVideo::get_num_options(void);
+
+33 10 get_option 0 4 43 23 WebcamVideo::get_option 0 1 16 258
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_option
+//       Access: Public, Static
+//  Description: Returns the nth webcam option.
+////////////////////////////////////////////////////////////////////
+63
+static PointerTo< WebcamVideo > WebcamVideo::get_option(int n);
+
+34 10 get_size_x 0 4 43 23 WebcamVideo::get_size_x 0 1 17 740
+// Filename: webcamVideo.I
+// Created by: jyelon (01Nov2007)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_size_x
+//       Access: Published
+//  Description: Returns the camera's size_x.
+////////////////////////////////////////////////////////////////////
+47
+inline int WebcamVideo::get_size_x(void) const;
+
+35 10 get_size_y 0 4 43 23 WebcamVideo::get_size_y 0 1 18 251
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_size_y
+//       Access: Published
+//  Description: Returns the camera's size_y.
+////////////////////////////////////////////////////////////////////
+47
+inline int WebcamVideo::get_size_y(void) const;
+
+36 7 get_fps 0 4 43 20 WebcamVideo::get_fps 0 1 19 382
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_fps
+//       Access: Published
+//  Description: Returns the camera's framerate.  This
+//               is a maximum theoretical: the actual performance
+//               will depend on the speed of the hardware.
+////////////////////////////////////////////////////////////////////
+44
+inline int WebcamVideo::get_fps(void) const;
+
+37 4 open 0 4 43 17 WebcamVideo::open 0 1 20 0
+66
+virtual PointerTo< MovieVideoCursor > WebcamVideo::open(void) = 0;
+
+38 6 output 0 4 43 19 WebcamVideo::output 0 1 21 331
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::output
+//       Access: Public
+//  Description: Outputs the WebcamVideo.  This function simply
+//               writes the name, size and FPS to the output stream.
+////////////////////////////////////////////////////////////////////
+52
+inline void WebcamVideo::output(ostream &out) const;
+
+39 14 get_class_type 0 4 43 27 WebcamVideo::get_class_type 0 1 22 0
+52
+static TypeHandle WebcamVideo::get_class_type(void);
+
+22
+1 14 Dtool_nRMquDPG 0 6 2 51 0 14 Dtool_nRMquDPG 807 ////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::make
+//       Access: Private
+//  Description: Create a new ARToolKit instance.
+//
+//               Camera must be the nodepath of a panda camera object.
+//               The panda camera's field of view is initialized to match
+//               the field of view of the physical webcam.  Each time
+//               you call analyze, all marker nodepaths will be moved
+//               into a position which is relative to this camera.
+//               The marker_size parameter indicates how large you
+//               printed the physical markers.  You should use the same
+//               size units that you wish to use in the panda code.
+//////////////////////////////////////////////////////////////////// 3 6 camera 1 45  9 paramfile 1 47  10 markersize 1 50  
+2 14 Dtool_nRMqAvpO 0 4 4 52 0 14 Dtool_nRMqAvpO 936 // Filename: arToolKit.I
+// Created by: jyelon (01Nov2007)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::set_threshold
+//       Access: private
+//  Description: As part of its analysis, the ARToolKit occasionally
+//               converts images to black and white by thresholding
+//               them.  The threshold is set to 0.5 by default, but
+//               you can tweak it here.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 51  1 n 1 50  
+3 14 Dtool_nRMqfZ5v 0 4 5 52 0 14 Dtool_nRMqfZ5v 469 ////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::attach_pattern
+//       Access: Public
+//  Description: Associates the specified glyph with the specified
+//               NodePath.  Each time you call analyze, ARToolKit
+//               will update the NodePath's transform.  If the node
+//               is not visible, its scale will be set to zero.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 51  7 pattern 1 47  4 path 1 45  
+4 14 Dtool_nRMqDOXO 0 4 6 52 0 14 Dtool_nRMqDOXO 267 ////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::detach_patterns
+//       Access: Public
+//  Description: Dissociates all patterns from all NodePaths.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 51  
+5 14 Dtool_nRMqIrwk 0 4 7 52 0 14 Dtool_nRMqIrwk 625 ////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::analyze
+//       Access: Public
+//  Description: Analyzes the non-pad region of the specified texture.
+//               This causes all attached nodepaths to move.
+//               The parameter do_flip_texture is true by default,
+//               because Panda's representation of textures is
+//               upside down from ARToolKit. If you already have
+//               a texture that's upside-down, however, you should
+//               set it to false.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 51  3 tex 1 53  15 do_flip_texture 1 55  
+6 14 Dtool_nRMqEjQj 0 4 7 52 0 14 Dtool_nRMqEjQj 625 ////////////////////////////////////////////////////////////////////
+//     Function: ARToolKit::analyze
+//       Access: Public
+//  Description: Analyzes the non-pad region of the specified texture.
+//               This causes all attached nodepaths to move.
+//               The parameter do_flip_texture is true by default,
+//               because Panda's representation of textures is
+//               upside down from ARToolKit. If you already have
+//               a texture that's upside-down, however, you should
+//               set it to false.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 51  3 tex 1 53  
+7 14 Dtool_nRMqRy9m 0 7 10 57 0 14 Dtool_nRMqRy9m 274 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::Constructor
+//       Access: Published
+//  Description: Sets up the texture to read frames from a camera
+//////////////////////////////////////////////////////////////////// 1 4 name 1 56  
+8 14 Dtool_nRMqHWbq 0 7 10 57 0 14 Dtool_nRMqHWbq 274 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::Constructor
+//       Access: Published
+//  Description: Sets up the texture to read frames from a camera
+//////////////////////////////////////////////////////////////////// 0 
+9 14 Dtool_nRMq7uh_ 0 6 11 55 0 14 Dtool_nRMq7uh_ 738 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+//
+//               If alpha_file_channel is 0, then the camera image
+//               becomes a normal RGB texture.  If it is 1, 2, or 3,
+//               then the camera image becomes an alpha texture, using
+//               the indicated channel of the source.
+//////////////////////////////////////////////////////////////////// 5 4 this 3 57  12 camera_index 1 58  1 z 1 58  18 alpha_file_channel 1 58  7 options 1 59  
+10 14 Dtool_nRMqasyl 0 6 11 55 0 14 Dtool_nRMqasyl 738 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+//
+//               If alpha_file_channel is 0, then the camera image
+//               becomes a normal RGB texture.  If it is 1, 2, or 3,
+//               then the camera image becomes an alpha texture, using
+//               the indicated channel of the source.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 57  12 camera_index 1 58  1 z 1 58  18 alpha_file_channel 1 58  
+11 14 Dtool_nRMqZLGx 0 6 11 55 0 14 Dtool_nRMqZLGx 738 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+//
+//               If alpha_file_channel is 0, then the camera image
+//               becomes a normal RGB texture.  If it is 1, 2, or 3,
+//               then the camera image becomes an alpha texture, using
+//               the indicated channel of the source.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 57  12 camera_index 1 58  1 z 1 58  
+12 14 Dtool_nRMqfvx2 0 6 11 55 0 14 Dtool_nRMqfvx2 738 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+//
+//               If alpha_file_channel is 0, then the camera image
+//               becomes a normal RGB texture.  If it is 1, 2, or 3,
+//               then the camera image becomes an alpha texture, using
+//               the indicated channel of the source.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 57  12 camera_index 1 58  
+13 14 Dtool_nRMqdqKA 0 6 11 55 0 14 Dtool_nRMqdqKA 738 ////////////////////////////////////////////////////////////////////
+//     Function: OpenCVTexture::from_camera
+//       Access: Published
+//  Description: Sets up the OpenCVTexture (or the indicated page, if z
+//               is specified) to accept its input from the camera
+//               with the given index number, or the default camera if
+//               the index number is -1 or unspecified.
+//
+//               If alpha_file_channel is 0, then the camera image
+//               becomes a normal RGB texture.  If it is 1, 2, or 3,
+//               then the camera image becomes an alpha texture, using
+//               the indicated channel of the source.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 57  
+14 14 Dtool_nRMqWKHM 0 7 12 63 0 14 Dtool_nRMqWKHM 0 0 
+15 14 Dtool_nRMqx3hN 0 6 15 58 0 14 Dtool_nRMqx3hN 465 ////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_num_options
+//       Access: Public, Static
+//  Description: Returns the number of webcam options.  An "option"
+//               consists of a device plus a set of configuration
+//               parameters.  For example, "Creative Webcam Live at
+//               640x480, 30 fps" is an option.
+//////////////////////////////////////////////////////////////////// 0 
+16 14 Dtool_nRMql_KD 0 7 16 64 0 14 Dtool_nRMql_KD 258 ////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_option
+//       Access: Public, Static
+//  Description: Returns the nth webcam option.
+//////////////////////////////////////////////////////////////////// 1 1 n 1 58  
+17 14 Dtool_nRMquwkU 0 6 17 58 0 14 Dtool_nRMquwkU 740 // Filename: webcamVideo.I
+// Created by: jyelon (01Nov2007)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_size_x
+//       Access: Published
+//  Description: Returns the camera's size_x.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 65  
+18 14 Dtool_nRMqrwAN 0 6 18 58 0 14 Dtool_nRMqrwAN 251 ////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_size_y
+//       Access: Published
+//  Description: Returns the camera's size_y.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 65  
+19 14 Dtool_nRMq3gAs 0 6 19 58 0 14 Dtool_nRMq3gAs 382 ////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::get_fps
+//       Access: Published
+//  Description: Returns the camera's framerate.  This
+//               is a maximum theoretical: the actual performance
+//               will depend on the speed of the hardware.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 65  
+20 14 Dtool_nRMq_JZy 0 7 20 68 0 14 Dtool_nRMq_JZy 0 1 4 this 3 64  
+21 14 Dtool_nRMqlHR3 0 4 21 52 0 14 Dtool_nRMqlHR3 331 ////////////////////////////////////////////////////////////////////
+//     Function: WebcamVideo::output
+//       Access: Public
+//  Description: Outputs the WebcamVideo.  This function simply
+//               writes the name, size and FPS to the output stream.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 65  3 out 1 69  
+22 14 Dtool_nRMqdNsf 0 7 22 63 0 14 Dtool_nRMqdNsf 0 0 
+31
+40 9 ARToolKit 0 26625 9 ARToolKit 9 ARToolKit 0 0 0 0 24 0 5 23 25 26 27 28 0 0 0 0 0 1001
+////////////////////////////////////////////////////////////////////
+//       Class : ARToolKit
+// Description : ARToolKit is a software library for building
+//               Augmented Reality (AR) applications. These are
+//               applications that involve the overlay of virtual
+//               imagery on the real world.  It was developed by
+//               Dr. Hirokazu Kato.  Its ongoing development is
+//               being supported by the Human Interface Technology
+//               Laboratory (HIT Lab) at the University of
+//               Washington, HIT Lab NZ at the University of
+//               Canterbury, New Zealand, and ARToolworks, Inc,
+//               Seattle.  It is available under a GPL license.
+//               It is also possible to negotiate other licenses
+//               with the copyright holders.
+//
+//               This class is a wrapper around the ARToolKit
+//               library.
+////////////////////////////////////////////////////////////////////
+
+41 13 OpenCVTexture 0 75777 13 OpenCVTexture 13 OpenCVTexture 0 0 0 1 29 0 0 2 30 31 0 0 1 0 42 0 0 0 0 408
+////////////////////////////////////////////////////////////////////
+//       Class : OpenCVTexture
+// Description : A specialization on VideoTexture that takes its input
+//               using the CV library, to produce an animated texture,
+//               with its source taken from an .avi file or from a
+//               camera input.
+////////////////////////////////////////////////////////////////////
+
+42 12 VideoTexture 0 2049 12 VideoTexture 12 VideoTexture 0 0 0 0 0 0 0 0 0 0 0 0 480
+////////////////////////////////////////////////////////////////////
+//       Class : VideoTexture
+// Description : The base class for a family of animated Textures that
+//               take their input from a video source, such as a movie
+//               file.  These Textures may be stopped, started,
+//               etc. using the AnimInterface controls, similar to an
+//               animated character.
+////////////////////////////////////////////////////////////////////
+
+43 11 WebcamVideo 0 75777 11 WebcamVideo 11 WebcamVideo 0 0 0 0 0 0 8 32 33 34 35 36 37 38 39 1 71 0 1 0 44 0 0 0 0 277
+////////////////////////////////////////////////////////////////////
+//       Class : WebcamVideo
+// Description : Allows you to open a webcam or other video capture
+//               device as a video stream.
+////////////////////////////////////////////////////////////////////
+
+44 10 MovieVideo 0 2049 10 MovieVideo 10 MovieVideo 0 0 0 0 0 0 0 0 0 0 0 0 676
+////////////////////////////////////////////////////////////////////
+//       Class : MovieVideo
+// Description : A MovieVideo is actually any source that provides
+//               a sequence of video frames.  That could include an
+//               AVI file, a digital camera, or an internet TV station.
+//
+//               The difference between a MovieVideo and a
+//               MovieVideoCursor is like the difference between a
+//               filename and a file handle.  The MovieVideo just
+//               indicates a particular movie.  The MovieVideoCursor
+//               is what allows access.
+////////////////////////////////////////////////////////////////////
+
+45 10 NodePath * 0 8576 10 NodePath * 10 NodePath * 0 0 46 0 0 0 0 0 0 0 0 0 0
+
+46 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 72 73 0 0 0 0 4938
+//
+// A NodePath is the fundamental unit of high-level interaction with
+// the scene graph.  It encapsulates the complete path down to a node
+// from some other node, usually the root of the scene graph.  This is
+// used to resolve ambiguities associated with instancing.
+//
+// NodePath also contains a number of handy high-level methods for
+// common scene-graph manipulations, such as reparenting, and common
+// state changes, such as repositioning.
+//
+// There are also a number of NodePath methods for finding nodes deep
+// within the tree by name or by type.  These take a path string,
+// which at its simplest consists of a series of node names separated
+// by slashes, like a directory pathname.
+//
+// Each component of the path string may optionally consist of one of
+// the following special names, instead of a node name:
+//
+//   *          -- matches exactly one node, with any name.
+//   **         -- matches any sequence of zero or more nodes.
+//   +typename  -- matches any node that is or derives from the given type.
+//   -typename  -- matches any node that is the given type exactly.
+//   =tag       -- matches any node that has the indicated tag.
+//   =tag=value -- matches any node whose tag matches the indicated value.
+//
+// Furthermore, a node name may itself contain standard filename
+// globbing characters, like *, ?, and [a-z], that will be accepted as
+// a partial match.  (In fact, the '*' special name may be seen as
+// just a special case of this.)  The globbing characters may not be
+// used with the typename matches or with tag matches, but they may
+// be used to match a tag's value in the =tag=value syntax.
+//
+// The special characters "@@", appearing at the beginning of a node
+// name, indicate a stashed node.  Normally, stashed nodes are not
+// returned by a find (but see the special flags, below), but a
+// stashed node may be found if it is explicitly named with its
+// leading @@ characters.  By extension, "@@*" may be used to identify
+// any stashed node.
+//
+// Examples:
+//
+// "room//graph" will look for a node named "graph", which is a child
+// of an unnamed node, which is a child of a node named "room", which
+// is a child of the starting path.
+//
+// "**/red*" will look for any node anywhere in the tree (below the
+// starting path) with a name that begins with "red".
+//
+// "**/+PartBundleNode/**/head" will look for a node named "head",
+// somewhere below a PartBundleNode anywhere in the tree.
+//
+//
+// The search is always potentially ambiguous, even if the special
+// wildcard operators are not used, because there may be multiple
+// nodes in the tree with the same name.  In general, in the case of
+// an ambiguity, the shortest path is preferred; when a method (such
+// as extend_by) must choose only only one of several possible paths,
+// it will choose the shortest available; on the other hand, when a
+// method (such as find_all_matches) is to return all of the matching
+// paths, it will sort them so that the shortest paths appear first in
+// the output.
+//
+//
+// Special flags.  The entire string may optionally be followed by the
+// ";" character, followed by one or more of the following special
+// control flags, with no intervening spaces or punctuation:
+//
+//    -h    Do not return hidden nodes.
+//    +h    Do return hidden nodes.
+//    -s    Do not return stashed nodes unless explicitly referenced with @@.
+//    +s    Return stashed nodes even without any explicit @@ characters.
+//    -i    Node name comparisons are not case insensitive: case must match
+//          exactly.
+//    +i    Node name comparisons are case insensitive: case is not important.
+//          This affects matches against the node name only; node type
+//          and tag strings are always case sensitive.
+//
+// The default flags are +h-s-i.
+//
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+47 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 48 0 0 0 0 0 0 0 0 0 0
+
+48 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 49 0 0 0 0 0 0 0 0 0 0
+
+49 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
+////////////////////////////////////////////////////////////////////
+//       Class : Filename
+// Description : The name of a file, such as a texture file or an Egg
+//               file.  Stores the full pathname, and includes
+//               functions for extracting out the directory prefix
+//               part and the file extension and stuff.
+//
+//               A Filename is also aware of the mapping between the
+//               Unix-like filename convention we use internally, and
+//               the local OS's specific filename convention, and it
+//               knows how to perform basic OS-specific I/O, like
+//               testing for file existence and searching a
+//               searchpath, as well as the best way to open an
+//               fstream for reading or writing.
+////////////////////////////////////////////////////////////////////
+
+50 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+51 11 ARToolKit * 0 8576 11 ARToolKit * 11 ARToolKit * 0 0 40 0 0 0 0 0 0 0 0 0 0
+
+52 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+53 9 Texture * 0 8576 9 Texture * 9 Texture * 0 0 54 0 0 0 0 0 0 0 0 0 0
+
+54 7 Texture 0 2048 7 Texture 7 Texture 0 0 0 0 0 0 0 0 0 0 0 0 1051
+////////////////////////////////////////////////////////////////////
+//       Class : Texture
+// Description : Represents a texture object, which is typically a
+//               single 2-d image but may also represent a 1-d or 3-d
+//               texture image, or the six 2-d faces of a cube map
+//               texture.
+//
+//               A texture's image data might be stored in system RAM
+//               (see get_ram_image()) or its image may be represented
+//               in texture memory on one or more
+//               GraphicsStateGuardians (see prepare()), or both.  The
+//               typical usage pattern is that a texture is loaded
+//               from an image file on disk, which copies its image
+//               data into system RAM; then the first time the texture
+//               is rendered its image data is copied to texture
+//               memory (actually, to the graphics API), and the
+//               system RAM image is automatically freed.
+////////////////////////////////////////////////////////////////////
+
+55 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+56 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+57 15 OpenCVTexture * 0 8576 15 OpenCVTexture * 15 OpenCVTexture * 0 0 41 0 0 0 0 0 0 0 0 0 0
+
+58 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+59 21 LoaderOptions const * 0 8576 21 LoaderOptions const * 21 LoaderOptions const * 0 0 60 0 0 0 0 0 0 0 0 0 0
+
+60 19 LoaderOptions const 0 8832 19 LoaderOptions const 19 LoaderOptions const 0 0 61 0 0 0 0 0 0 0 0 0 0
+
+61 13 LoaderOptions 0 2048 13 LoaderOptions 13 LoaderOptions 0 0 0 0 0 0 0 0 0 0 0 0 257
+////////////////////////////////////////////////////////////////////
+//       Class : LoaderOptions
+// Description : Specifies parameters that may be passed to the
+//               loader.
+////////////////////////////////////////////////////////////////////
+
+62 10 TypeHandle 0 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+63 12 TypeHandle * 0 8576 12 TypeHandle * 12 TypeHandle * 0 0 62 0 0 0 0 0 0 0 0 0 0
+
+64 13 WebcamVideo * 0 8576 13 WebcamVideo * 13 WebcamVideo * 0 0 43 0 0 0 0 0 0 0 0 0 0
+
+65 19 WebcamVideo const * 0 8576 19 WebcamVideo const * 19 WebcamVideo const * 0 0 66 0 0 0 0 0 0 0 0 0 0
+
+66 17 WebcamVideo const 0 8832 17 WebcamVideo const 17 WebcamVideo const 0 0 43 0 0 0 0 0 0 0 0 0 0
+
+67 16 MovieVideoCursor 0 2048 16 MovieVideoCursor 16 MovieVideoCursor 0 0 0 0 0 0 0 0 0 0 0 0 812
+////////////////////////////////////////////////////////////////////
+//       Class : MovieVideoCursor
+// Description : A MovieVideo is actually any source that provides
+//               a sequence of video frames.  That could include an
+//               AVI file, a digital camera, or an internet TV station.
+//               A MovieVideoCursor is a handle that lets you read
+//               data sequentially from a MovieVideo.
+//
+//               Thread safety: each individual MovieVideoCursor
+//               must be owned and accessed by a single thread.
+//               It is OK for two different threads to open
+//               the same file at the same time, as long as they
+//               use separate MovieVideoCursor objects.
+////////////////////////////////////////////////////////////////////
+
+68 18 MovieVideoCursor * 0 8576 18 MovieVideoCursor * 18 MovieVideoCursor * 0 0 67 0 0 0 0 0 0 0 0 0 0
+
+69 9 ostream * 0 8576 9 ostream * 9 ostream * 0 0 70 0 0 0 0 0 0 0 0 0 0
+
+70 7 ostream 0 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+3
+71 0 0 13 11 get_options 15 get_num_options 10 get_option 
+72 0 0 25 9 get_nodes 13 get_num_nodes 8 get_node 
+73 0 0 25 13 get_ancestors 13 get_num_nodes 12 get_ancestor 

@@ -1,0 +1,17 @@
+i'm gonna install a new system in the server.
+
+Current X New
+
+In current we have toon folder, in new is dropped.
+In current, the doId follows the public CMU schema, in new they'll be attached
+to the account.
+
+Pros:
+	Dropping 2 id-style
+	Fixed doId per account/toon
+
+Cons:
+	Limits number of accounts to ~40000 (actually enough)
+
+Day of the change: Unknown, but after I finish fishing stuff, so I'll work on friendship (again)
+~loblao
