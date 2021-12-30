@@ -1,1 +1,8 @@
+# Ignore Compiled Python Files
 *.pyc
+
+# IDEA pycharm/intellij
+.idea/
+
+# Toon Databases are Ugly
+/user/

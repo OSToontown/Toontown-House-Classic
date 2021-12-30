@@ -33,6 +33,17 @@ echo = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 echo Username [!] This does get stored in your source code so beware!
 echo = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 set /P USER="Username: "
+if not exist "dependencies/server/data/blobs/%USER%.blob" (
+    echo Creating user: %USER%...
+    echo. 2>"dependencies/server/data/blobs/%USER%.blob"
+)
+if not exist "dependencies/server/data/toons" (
+    echo Creating 'toons' directory...
+    mkdir "dependencies/server/data/toons"
+)
+if not exist "user/logs" (
+    mkdir "user/logs"
+)
 :start
 "dependencies/panda/python/python" main.py -svaddr localhost -l en -u %USER% -d
 pause
