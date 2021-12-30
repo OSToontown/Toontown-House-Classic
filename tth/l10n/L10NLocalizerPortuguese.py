@@ -5,7 +5,7 @@ from L10NLocalizerPortugueseSC import data as SpeedChatData
 from L10NLocalizerPortugueseTips import data as TipData
 from L10NLocalizerPortugueseOld import data as OldData
 
-NAMES_FILE_PATH = 'data/etc/languages/names_pt.l10n'
+NAMES_FILE_PATH = 'etc/languages/names_pt.l10n'
 
 CATNameShopReview = '\
 The Toontown House staff\nwill review your\nname.  \
@@ -21,40 +21,40 @@ DialogQuestion = '?'
 ToonSleepString = '. . . ZZZ . . .'
 
 FishNames=(
-           ('Peixe Palhaço','Peixe Palhaço Triste','Peixe Palhaço de Festa','Peixe Palhaço de Circo'),
-           ('Baiacu','Baiacu Balão de Ar','Baiacu Balão Meteorológico','Baiacu balão de Água','Baiacu Balão Vermelho'),
-           ('Peixe Gato','Peixe Gato Siamês','Peixe Gato de Rua','Peixe Gato Rajado','Peixe Gato Tonto'),
+           ('Peixe Palhaï¿½o','Peixe Palhaï¿½o Triste','Peixe Palhaï¿½o de Festa','Peixe Palhaï¿½o de Circo'),
+           ('Baiacu','Baiacu Balï¿½o de Ar','Baiacu Balï¿½o Meteorolï¿½gico','Baiacu balï¿½o de ï¿½gua','Baiacu Balï¿½o Vermelho'),
+           ('Peixe Gato','Peixe Gato Siamï¿½s','Peixe Gato de Rua','Peixe Gato Rajado','Peixe Gato Tonto'),
            ('Raia Jamanta',),
            ('Peixe Congelado',),
            ('Estrela do mar','Cinco Estrelas do mar','Estrela do mar do Rock','Estrela do mar Cintilante','Estrela do mar All Star'),
            ('Cavala Trotante',),
-           ('Cachorra','Cachorra Buldogue','Cachorra-quente','Cachorra Dálmata','Cachorrinha'),
-           ('Enguia Amore','Enguia Amore Elétrica'),
-           ('Tubarão enfermeira','Tubarão enfermeira Clara','Tubarão enfermeira Flora'),
+           ('Cachorra','Cachorra Buldogue','Cachorra-quente','Cachorra Dï¿½lmata','Cachorrinha'),
+           ('Enguia Amore','Enguia Amore Elï¿½trica'),
+           ('Tubarï¿½o enfermeira','Tubarï¿½o enfermeira Clara','Tubarï¿½o enfermeira Flora'),
            ('Caranguejo-rei','Caranguejo-rei do Alasca','Caranguejo-rei Velho'),
            ('Peixe-lua','Peixe-lua Cheia','Peixe Meia-lua','Peixe-lua Nova','Peixe-lua Crescente','Peixe-lua da Colheita'),
-           ('Cavalo Marinho','Cavalo Marinho de Pau','Cavalo Marinho Clydesdale','Cavalo Marinho Árabe'),
-           ('Tubarão Fera','Tubarãozinho Fera','Tubarão-Fera da Piscina','Tubarão-Fera da Piscina Olímpica'),
+           ('Cavalo Marinho','Cavalo Marinho de Pau','Cavalo Marinho Clydesdale','Cavalo Marinho ï¿½rabe'),
+           ('Tubarï¿½o Fera','Tubarï¿½ozinho Fera','Tubarï¿½o-Fera da Piscina','Tubarï¿½o-Fera da Piscina Olï¿½mpica'),
            ('Barra Cursa Marrom','Barra Cursa Preto','Barra Cursa Coala','Barra Cursa de Mel','Barra Cursa Polar','Barra Cursa Panda','Barra Cursa Kodiac','Barra Cursa Grizzly'),
-           ('Truta','Capitão Truta Cicuta','Truta Cicuta Escorbuta'),
-           ('Piano Atum','Grande Piano Atum','Grande Piano Atum Baby','Piano Atum Ereto','Músico de Piano Atum'),
-           ('Manteiga de Amendoim e Água Viva','Manteiga de Amendoim e Água Viva de Uva','Manteiga de Amendoim e Água Viva Crocante','Manteiga de Amendoim e Água Viva de Morango','Manteiga de Amendoim e Água Viva'),
+           ('Truta','Capitï¿½o Truta Cicuta','Truta Cicuta Escorbuta'),
+           ('Piano Atum','Grande Piano Atum','Grande Piano Atum Baby','Piano Atum Ereto','Mï¿½sico de Piano Atum'),
+           ('Manteiga de Amendoim e ï¿½gua Viva','Manteiga de Amendoim e ï¿½gua Viva de Uva','Manteiga de Amendoim e ï¿½gua Viva Crocante','Manteiga de Amendoim e ï¿½gua Viva de Morango','Manteiga de Amendoim e ï¿½gua Viva'),
            )
 
-FishingTankFull = 'Seu balde está cheio. Vai vender seus peixes para o Vendedor da Loja de Animais e volte.'
-FishingBroke = 'Você não tem mais balinhas para isca! Jogue no bondinho ou venda seus peixes para o Vendedor da Loja de Animais para conseguir mais balinhas.'
+FishingTankFull = 'Seu balde estï¿½ cheio. Vai vender seus peixes para o Vendedor da Loja de Animais e volte.'
+FishingBroke = 'Vocï¿½ nï¿½o tem mais balinhas para isca! Jogue no bondinho ou venda seus peixes para o Vendedor da Loja de Animais para conseguir mais balinhas.'
 
 FishPickerTotalValue = 'Balde: %s / %s\nValor: %d balinhas'
 
 
 FishingExit = 'Exit'
 FishingCast = 'Cast'
-FishingItemFound = 'Você pegou:'
+FishingItemFound = 'Vocï¿½ pegou:'
 FishingBootItem = 'Uma bota velha'
 
 FishGuiCancel = 'Cancelar'
 FishGuiOk = 'Vender tudo'
-FishTankValue = 'Olá, %(name)s! Você tem %(num)s peixes em seu balde que valem um total de %(value)s balinhas. Você quer vender tudo?'
+FishTankValue = 'Olï¿½, %(name)s! Vocï¿½ tem %(num)s peixes em seu balde que valem um total de %(value)s balinhas. Vocï¿½ quer vender tudo?'
 
 lHQOfficerM = lHQOfficerF = "HQ Officer"
 NPCToonNames = {20000: 'Tutorial Tom',

@@ -3,7 +3,7 @@ from L10NLocalizerEnglishSC import data as SpeedChatData
 from L10NLocalizerEnglishTips import data as TipData
 from L10NLocalizerEnglishOld import data as OldData
 
-NAMES_FILE_PATH = 'data/etc/languages/names_en.l10n'
+NAMES_FILE_PATH = 'etc/languages/names_en.l10n'
 
 CATNameShopReview = '\
 The Toontown House staff\nwill review your\nname.  \

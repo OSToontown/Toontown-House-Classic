@@ -6,14 +6,14 @@ from L10NLocalizerFrenchSC import data as SpeedChatData
 from L10NLocalizerFrenchTips import data as TipData
 from L10NLocalizerFrenchOld import data as OldData
 
-NAMES_FILE_PATH = 'data/etc/languages/names_fr.l10n'
+NAMES_FILE_PATH = 'etc/languages/names_fr.l10n'
 
 CATNameShopReview = '\
 The Toontown House staff\nwill review your\nname.  \
 Review may\ntake a few days.\nWhile you wait\nyour name will be\n '
 CATNameShopContinueSubmission = 'Continuer l\'envoi'
 CATNameShopChooseAnother = 'Choisir un autre nom'
-CATAllNewNames = 'Tous les nouveaux noms sont\napprouvés par un membre de l\'équipe..'
+CATAllNewNames = 'Tous les nouveaux noms sont\napprouvï¿½s par un membre de l\'ï¿½quipe..'
 
 DialogSpecial = 'ooo'
 DialogExclamation = '!'
@@ -22,34 +22,34 @@ DialogQuestion = '?'
 ToonSleepString = '. . . ZZZ . . .'
 
 FishNames=(
-           ('Poisson Clown','Poisson Clown Triste','Poisson Clown Fêtif','Poisson Clown de cirque'),
-           ('Poisson baudruche','Poisson baudruche à air chaud','Poisson baudruche météo','Poisson baudruche à eau','Poisson baudruche rouge'),
-           ('Poisson-chat','Poisson-chat Siamois','Poisson-chat de gouttière','Poisson-chat Tigré','Poisson-chat Tom'),
+           ('Poisson Clown','Poisson Clown Triste','Poisson Clown Fï¿½tif','Poisson Clown de cirque'),
+           ('Poisson baudruche','Poisson baudruche ï¿½ air chaud','Poisson baudruche mï¿½tï¿½o','Poisson baudruche ï¿½ eau','Poisson baudruche rouge'),
+           ('Poisson-chat','Poisson-chat Siamois','Poisson-chat de gouttiï¿½re','Poisson-chat Tigrï¿½','Poisson-chat Tom'),
            ('Raie Diabolique',),
-           ('Poisson Congelé',),
-           ('Étoile de mêr','Étoile de mêr 5 étoiles','Étoile de mêr Rock','Étoile de mêr brillante','Étoile de mêr Vedette'),
+           ('Poisson Congelï¿½',),
+           ('ï¿½toile de mï¿½r','ï¿½toile de mï¿½r 5 ï¿½toiles','ï¿½toile de mï¿½r Rock','ï¿½toile de mï¿½r brillante','ï¿½toile de mï¿½r Vedette'),
            ('Macaratrou',),
            ('Poisson Chien','Poisson Bull Dog','Poisson Chien Chaud','Poisson Dalamatien','Poisson Chiot'),
-           ('Anguille Amore','Anguille Amore Électrique'),
-           ('Inferimiére Requin','Inferimiére Clara Requin','Inferimiére Florence Requin'),
+           ('Anguille Amore','Anguille Amore ï¿½lectrique'),
+           ('Inferimiï¿½re Requin','Inferimiï¿½re Clara Requin','Inferimiï¿½re Florence Requin'),
            ('Roi Crabe','Roi Crabe d\'Alaska','Vieux Roi Crabe'),
            ('Poisson Lune','Full Moon Fish','Half Moon Fish','New Moon Fish','Crescent Moon Fish','Harvest Moon Fish'),
-           ('Hippocaval','Hippocaval Rock','Hippocaval Clydesdale','Hippocaval Arâbe'),
+           ('Hippocaval','Hippocaval Rock','Hippocaval Clydesdale','Hippocaval Arï¿½be'),
            ('Requin Billard','Requin Billard Tout-p\'tit','Requin Billard Nageant','Requin Billard Olympique'),
-           ('Ours Brun Acuda','Ours Noir Acuda','Ours Koala Acuda','Ours à Miel Acuda','Ours Polaire Acuda','Ours Panda Acuda','Kodiac Bear Acuda','Ours des Fôrets Acuda'),
+           ('Ours Brun Acuda','Ours Noir Acuda','Ours Koala Acuda','Ours ï¿½ Miel Acuda','Ours Polaire Acuda','Ours Panda Acuda','Kodiac Bear Acuda','Ours des Fï¿½rets Acuda'),
            ('Truite Assassin','Captaine Truite Assassin','Truite Assassin Scorbut'),
-           ('Pianthon','Pianthon Magnifique','Pianthon Bébé Magnifique','Pianthon Droit','Pianthon Joueur'),
+           ('Pianthon','Pianthon Magnifique','Pianthon Bï¿½bï¿½ Magnifique','Pianthon Droit','Pianthon Joueur'),
            ('Beurre d\'arachide&Confiduse','Poisson B&C au Raisins','Poisson B&C Croustillant','Poisson B&C au Fraises','Poisson B&C au Raisins en harmonie'),
            )
 
-FishingTankFull = 'Ton seau de pêche est plein. Va vendre tes poissons au marchand de l\'animalerie et reviens ici.'
-FishingBroke = 'Tu n\'as plus assez de bonbons comme appât. Va sur le tramway ou vends tes poissons au marchand de l\'animalerie pour recevoir plus de bonbons.'
+FishingTankFull = 'Ton seau de pï¿½che est plein. Va vendre tes poissons au marchand de l\'animalerie et reviens ici.'
+FishingBroke = 'Tu n\'as plus assez de bonbons comme appï¿½t. Va sur le tramway ou vends tes poissons au marchand de l\'animalerie pour recevoir plus de bonbons.'
 
 FishPickerTotalValue = 'Seau: %s / %s\nValeur : %d bonbons'
 
 FishingExit = 'Quitter'
 FishingCast = 'Lancer'
-FishingItemFound = 'Tu as attrapé :'
+FishingItemFound = 'Tu as attrapï¿½ :'
 FishingBootItem = 'Une vielle botte'
 
 FishGuiCancel = 'Annuler'
@@ -714,7 +714,7 @@ NPCToonNames = {20000: 'Tutoriel Tom',
 
 Gloves = "Gants"
 
-FishermanSaleCancel = "Reviens ici pour vendre tes poissons à l'Animalerie pour des bonbons."
+FishermanSaleCancel = "Reviens ici pour vendre tes poissons ï¿½ l'Animalerie pour des bonbons."
 FishermanSaleDone = "Merci ! L'Animalerie va les adorer ! Au revoir !"
-FishermanSaleBonus = "WOW ! Tu as eu %s poissons sur un total de 70 ! Cela mérite un bonus de rigolpoints et un trophée !"
-NPCTimeout = "Besoin de plus de temps pour réfléchir ?"
+FishermanSaleBonus = "WOW ! Tu as eu %s poissons sur un total de 70 ! Cela mï¿½rite un bonus de rigolpoints et un trophï¿½e !"
+NPCTimeout = "Besoin de plus de temps pour rï¿½flï¿½chir ?"
