@@ -749,8 +749,8 @@ class GfxTabPage(DirectFrame):
 		else:
 			tempF2 = "#f"
 		newPrc = "notify-level warning\ndefault-directnotify-level info\nicon-filename toontown.ico\ndirect-gui-edit 1\ndefault-model-extension .bam\nload-display pandagl\naux-display pandadx9\naux-display pandadx8\naux-display tinydisplay\naudio-library-name p3fmod_audio\nfmod-use-surround-sound true\nwant-directtools #f\nwant-tk #f\nwindow-title Toontown House\nwin-width "+str(self.gfxConfig[3][0])+"\nwin-height "+str(self.gfxConfig[3][1])+"\nfullscreen "+tempF+"\nmultisamples "+str(self.gfxConfig[1])+"\nwin-orgin 0 0\nshow-frame-rate-meter #t\nhead-tag "+tempF2
-		os.remove("etc/Config.prc")
-		open('etc/Config.prc','w').write(newPrc)
+		os.remove("dependencies/etc/Config.prc")
+		open('dependencies/etc/Config.prc','w').write(newPrc)
 		self.__handleApplyWithConfirm()
 			
 	def __handleApplyWithConfirm(self):
