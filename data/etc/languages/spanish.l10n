@@ -1,0 +1,83 @@
+#wtf its a mix of google and french -_-
+
+LSC_LOADING Loading...
+
+CTP_MAK CREAR UN TOON
+CTP_CHOOSETEXT ELEGIR UN TOON PARA JUGAR
+CTP_EXIT SALIDA
+
+TPS_TIPTITLE  Consejo Toon :
+TPS_GOINGTO  Teleporting
+
+AREA_PLAYGROUND Patio
+AREA_Toontorial Toontorial
+AREA_CAT Crear-un-Toon
+AREA_TTC Centro del Toontown
+AREA_51 Zona 51
+AREA_EDITOR Editor
+AREA_SPEEDWAY Hipódromo
+AREA_KARTSHOP Tienda de Karts
+AREA_DDK Boñuelo Puerto
+AREA_ACRES Arboleda
+AREA_MINIGOLF Mini-golf
+AREA_HQ_BOSS Jefe Robo Sede
+
+GOLF_HARD El kit entero y Caboodle duro - 9 Hoyos
+GOLF_MED Orificios Un Fun Medium - 6 agujeros
+GOLF_EASY Caminando el par Fácil - 3 agujeros
+
+COGHQ_FRONT3 Frente Tres
+COGHQ_MIDDLE6 Medio Six
+COGHQ_BACK9 Back Nine
+
+PROP_TROLLEY Juegos Tranvía
+PROP_CLOTHSTORE Tienda de ropa
+PROP_PETSHOP Tienda de Animales
+PROP_BANK Banco
+PROP_SCHOOLHOUSE Toontown School
+PROP_HALL Alcalde de Toontown
+
+CAT_GIRL Chica
+CAT_BOY Niño
+CAT_CHOOSE Seleccione
+CAT_SHUFFLE 
+CAT_TITLE_GENDER LE SEXE
+CAT_TITLE_SPECIES L'ESPECE
+CAT_TITLE_COLOR LES COULEURS
+CAT_TITLE_CLOTHES LES VETEMENTS
+CAT_TITLE_NAME UN NOM
+
+CAT_HEAD Tête
+CAT_TORSO Corps
+CAT_LEGS Jambes
+CAT_SHIRT Haut
+CAT_SHORTS Pantalon
+CAT_SKIRT Jupe
+
+SPC_CAT Chat
+SPC_PIG Cochon
+SPC_DOG Chien
+SPC_HORSE Cheval
+SPC_BEAR Ours
+SPC_MOUSE Souris
+SPC_DUCK Canard
+SPC_RABBIT Lapin
+SPC_MONKEY Singe
+
+COLOR_GOLDEN Doré
+COLOR_LIGHTBLUE Bleu Azur
+COLOR_DARKBLUE Bleu foncé
+COLOR_PINK Rose
+COLOR_DARKGREEN Vert foncé
+COLOR_LIGHTGREEN Vert clair
+COLOR_BROWN Marron
+COLOR_PURPLE Violet
+COLOR_RED Rouge
+COLOR_ORANGE Orange
+COLOR_YELLOW Jaune
+
+BOOK_DIST Districts
+BOOK_DIST_ABOUT Chaque district est une copie du monde de Toontown House. Pour aller dans un district, clique sur son nom.
+
+SPEECH_TUT_COMEHERE Viens par ici ! Utilise les flèches de ton clavier pour te déplacer !
+SPEECH_TUT_GOTOTTC Le Toontoriel est encore en construction, va a Toontown Central !
