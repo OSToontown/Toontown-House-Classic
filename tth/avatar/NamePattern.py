@@ -3,7 +3,7 @@ import random
 try:
     NAMES_FILE_PATH = L10N.NAMES_FILE_PATH
 except:
-    NAMES_FILE_PATH = 'data/etc/languages/names_en.l10n'
+    NAMES_FILE_PATH = 'etc/languages/names_en.l10n'
 
 TITLE_M = '0'
 TITLE_F = '1'
